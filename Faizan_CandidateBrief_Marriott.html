@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Syed Faizan Ahmed-Candidate Brief</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --gold:    #B8973A;
+    --gold-lt: #D4AF55;
+    --dark:    #0F1117;
+    --mid:     #1C2030;
+    --card:    #232840;
+    --muted:   #8892A4;
+    --light:   #E8EAF0;
+    --white:   #FFFFFF;
+  }
+
+  body {
+    font-family: 'Liberation Sans', 'FreeSans', 'DejaVu Sans', sans-serif;
+    background: var(--dark);
+    color: var(--light);
+    width: 210mm;
+    min-height: 297mm;
+    margin: 0 auto;
+    position: relative;
+    overflow-y: auto;
+    overflow-x: hidden; 
+  }
+
+  /* ── Background texture ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 40% at 80% 10%, rgba(184,151,58,0.07) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 50% at 10% 90%, rgba(184,151,58,0.05) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  /* ── Gold top bar ── */
+  .topbar {
+    height: 4px;
+    background: linear-gradient(90deg, var(--gold), var(--gold-lt), var(--gold));
+  }
+
+  /* ── Header ── */
+  header {
+    padding: 22px 40px 18px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    gap: 20px;
+    border-bottom: 1px solid rgba(184,151,58,0.2);
+  }
+
+  .name-block h1 {
+    font-family: 'Liberation Serif', 'FreeSerif', 'DejaVu Serif', Georgia, serif;
+    font-size: 36px;
+    color: var(--white);
+    letter-spacing: -0.5px;
+    line-height: 1;
+  }
+
+  .name-block .role-tag {
+    margin-top: 7px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11.5px;
+    font-weight: 500;
+    color: var(--gold);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  .role-tag::before {
+    content: '';
+    display: block;
+    width: 22px;
+    height: 1.5px;
+    background: var(--gold);
+  }
+
+  .contact-block {
+    text-align: right;
+    font-size: 11.5px;
+    color: var(--muted);
+    line-height: 1.9;
+  }
+
+  .contact-block a { color: var(--gold-lt); text-decoration: none; }
+
+  /* ── Intro banner ── */
+  .intro {
+    margin: 12px 40px;
+    padding: 12px 20px;
+    background: var(--card);
+    border-left: 3px solid var(--gold);
+    border-radius: 0 6px 6px 0;
+    font-size: 13px;
+    line-height: 1.75;
+    color: #C8D0E0;
+  }
+
+  .intro strong { color: var(--white); }
+
+  /* ── Main grid ── */
+  .main {
+    padding: 0 40px 14px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  /* ── Section card ── */
+  .card {
+    background: var(--card);
+    border-radius: 8px;
+    padding: 12px 16px;
+    border: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .card.full { grid-column: 1 / -1; }
+
+  .card-title {
+    font-size: 9.5px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .card-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(184,151,58,0.25);
+  }
+
+  /* ── Match meter ── */
+  .match-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .match-item { }
+
+  .match-label {
+    font-size: 10.5px;
+    color: var(--muted);
+    margin-bottom: 5px;
+  }
+
+  .bar-track {
+    height: 5px;
+    background: rgba(255,255,255,0.07);
+    border-radius: 99px;
+    overflow: hidden;
+  }
+
+  .bar-fill {
+    height: 100%;
+    border-radius: 99px;
+    background: linear-gradient(90deg, var(--gold), var(--gold-lt));
+  }
+
+  .match-pct {
+    font-size: 10px;
+    color: var(--gold-lt);
+    margin-top: 3px;
+    font-weight: 500;
+  }
+
+  /* ── Value props ── */
+  .prop-list { display: flex; flex-direction: column; gap: 10px; }
+
+  .prop {
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+  }
+
+  .prop-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    background: rgba(184,151,58,0.12);
+    border: 1px solid rgba(184,151,58,0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .prop-text strong {
+    display: block;
+    font-size: 12px;
+    color: var(--white);
+    font-weight: 600;
+    margin-bottom: 2px;
+  }
+
+  .prop-text span {
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  /* ── Stack chips ── */
+  .chip-wrap { display: flex; flex-wrap: wrap; gap: 6px; }
+
+  .chip {
+    font-size: 10.5px;
+    padding: 4px 10px;
+    border-radius: 99px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: var(--light);
+  }
+
+  .chip.gold {
+    background: rgba(184,151,58,0.12);
+    border-color: rgba(184,151,58,0.35);
+    color: var(--gold-lt);
+  }
+
+  /* ── Timeline ── */
+  .timeline { display: flex; flex-direction: column; gap: 8px; }
+
+  .tl-item { display: flex; gap: 14px; align-items: flex-start; }
+
+  .tl-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--gold);
+    margin-top: 5px;
+    flex-shrink: 0;
+    box-shadow: 0 0 6px rgba(184,151,58,0.5);
+  }
+
+  .tl-role {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--white);
+  }
+
+  .tl-company {
+    font-size: 11px;
+    color: var(--gold-lt);
+  }
+
+  .tl-date {
+    font-size: 10px;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+
+  .tl-note {
+    font-size: 10.5px;
+    color: #9AA3B5;
+    margin-top: 4px;
+    line-height: 1.5;
+  }
+
+  /* ── Quote / closer ── */
+  .closer {
+    margin: 4px 40px 10px;
+    padding: 12px 20px;
+    background: linear-gradient(135deg, rgba(184,151,58,0.1), rgba(184,151,58,0.04));
+    border: 1px solid rgba(184,151,58,0.25);
+    border-radius: 8px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 16px;
+    align-items: center;
+  }
+
+  .closer-quote {
+    font-family: 'Liberation Serif', 'FreeSerif', 'DejaVu Serif', Georgia, serif;
+    font-size: 48px;
+    color: var(--gold);
+    line-height: 0.7;
+    opacity: 0.6;
+  }
+
+  .closer-text {
+    font-size: 12.5px;
+    color: var(--light);
+    line-height: 1.7;
+  }
+
+  .closer-text strong { color: var(--white); }
+
+  /* ── Footer ── */
+  footer {
+    padding: 8px 40px;
+    border-top: 1px solid rgba(184,151,58,0.15);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-label {
+    font-size: 9.5px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .footer-cta {
+    font-size: 10.5px;
+    color: var(--gold);
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+
+  /* ── Big stat ── */
+  .stat-row {
+    display: flex;
+    gap: 14px;
+    margin-bottom: 8px;
+  }
+
+  .stat-box {
+    flex: 1;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 6px;
+    padding: 10px 14px;
+    text-align: center;
+  }
+
+  .stat-num {
+    font-family: 'Liberation Serif', 'FreeSerif', 'DejaVu Serif', Georgia, serif;
+    font-size: 26px;
+    color: var(--gold-lt);
+    line-height: 1;
+  }
+
+  .stat-desc {
+    font-size: 9.5px;
+    color: var(--muted);
+    margin-top: 4px;
+    line-height: 1.4;
+  }
+
+</style>
+</head>
+<body>
+
+<div class="topbar"></div>
+
+<!-- ── HEADER ── -->
+<header>
+  <div class="name-block">
+    <h1>Syed Faizan Ahmed</h1>
+    <div class="role-tag">Candidate - IT Technician · Sheraton Centre Toronto</div>
+  </div>
+  <div class="contact-block">
+    +1 (226) 920-4412<br>
+    <a href="mailto:s.faizanahmed338@gmail.com">s.faizanahmed338@gmail.com</a><br>
+    Toronto, ON — Available Immediately<br>
+    <a href="https://fa1zan-portfolio.vercel.app">fa1zan-portfolio.vercel.app</a>
+  </div>
+</header>
+
+<!-- ── INTRO BANNER ── -->
+<div class="intro">
+  I'm reaching out directly because I believe I'm a strong match for the IT Technician role at Sheraton Centre Toronto.
+  I have <strong>hands-on enterprise IT support experience</strong> handling hardware, software, and network issues at scale —
+  and I'm graduating from <strong>Master's in Applied Computing at Wilfrid Laurier University</strong>.
+  This brief summarises exactly why I fit what you're looking for.
+</div>
+
+<!-- ── MAIN GRID ── -->
+<div class="main">
+
+  <!-- Tools full-width at top -->
+  <div class="card full">
+      <div class="card-title">Tools & Platforms</div>
+      <div class="chip-wrap">
+        <span class="chip gold">Windows 10/11</span>
+        <span class="chip gold">Active Directory</span>
+        <span class="chip gold">Microsoft 365</span>
+        <span class="chip gold">ServiceNow</span>
+        <span class="chip gold">Jira</span>
+        <span class="chip">VPN Troubleshooting</span>
+        <span class="chip">TCP/IP · DNS · DHCP</span>
+        <span class="chip">POS Terminal Support</span>
+        <span class="chip">Hardware Break-Fix</span>
+        <span class="chip">Ubuntu Linux</span>
+        <span class="chip">KB Documentation</span>
+        <span class="chip">Asset Inventory</span>
+      </div>
+  </div>
+
+  <!-- Left col: Key numbers + JD match -->
+  <div style="display:flex; flex-direction:column; gap:20px;">
+
+    <div class="card">
+      <div class="card-title">By the Numbers</div>
+      <div class="stat-row">
+        <div class="stat-box">
+          <div class="stat-num">120+</div>
+          <div class="stat-desc">Tickets resolved<br>per week at Kyndryl</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">3.9</div>
+          <div class="stat-desc">GPA — Master's in<br>Applied Computing</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">2+</div>
+          <div class="stat-desc">Years combined<br>IT experience</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">JD Match — Key Requirements</div>
+      <div class="match-grid">
+
+        <div class="match-item">
+          <div class="match-label">First & Second-Level Support</div>
+          <div class="bar-track"><div class="bar-fill" style="width:100%"></div></div>
+          <div class="match-pct">100% — Daily at Kyndryl</div>
+        </div>
+
+        <div class="match-item">
+          <div class="match-label">Hardware Break-Fix & Installs</div>
+          <div class="bar-track"><div class="bar-fill" style="width:95%"></div></div>
+          <div class="match-pct">95% — Peripherals, configs</div>
+        </div>
+
+        <div class="match-item">
+          <div class="match-label">Windows 10/11 & M365</div>
+          <div class="bar-track"><div class="bar-fill" style="width:100%"></div></div>
+          <div class="match-pct">100% — Core daily tools</div>
+        </div>
+
+        <div class="match-item">
+          <div class="match-label">ServiceNow & Jira</div>
+          <div class="bar-track"><div class="bar-fill" style="width:100%"></div></div>
+          <div class="match-pct">100% — Used both daily</div>
+        </div>
+
+        <div class="match-item">
+          <div class="match-label">Asset & Inventory Management</div>
+          <div class="bar-track"><div class="bar-fill" style="width:90%"></div></div>
+          <div class="match-pct">90% — Audit-ready tracking</div>
+        </div>
+
+        <div class="match-item">
+          <div class="match-label">University Degree</div>
+          <div class="bar-track"><div class="bar-fill" style="width:100%"></div></div>
+          <div class="match-pct">100% — Masters + Bachelor's</div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Right col: Why me + tools -->
+  <div style="display:flex; flex-direction:column; gap:20px;">
+
+    <div class="card">
+      <div class="card-title">Why I'm the Right Fit</div>
+      <div class="prop-list">
+
+        <div class="prop">
+          <div class="prop-icon">⚡</div>
+          <div class="prop-text">
+            <strong>Fast, reliable under pressure</strong>
+            <span>Handled 120+ tickets/week in an SLA-driven environment. Users got same-day resolution as the default, not the exception.</span>
+          </div>
+        </div>
+
+        <div class="prop">
+          <div class="prop-icon">🔧</div>
+          <div class="prop-text">
+            <strong>Hands-on hardware & software</strong>
+            <span>Break-fix, peripheral swap-outs, workstation rebuilds, POS terminal troubleshooting — comfortable getting things done physically.</span>
+          </div>
+        </div>
+
+        <div class="prop">
+          <div class="prop-icon">🗣️</div>
+          <div class="prop-text">
+            <strong>Clear with non-technical people</strong>
+            <span>Explained technical issues in plain language consistently. People rarely called back on the same issue twice.</span>
+          </div>
+        </div>
+
+        <div class="prop">
+          <div class="prop-icon">📍</div>
+          <div class="prop-text">
+            <strong>Local, available, committed</strong>
+            <span>Based in Toronto, ON. Available immediately. Looking for a role I can grow in — not a stepping stone.</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Full-width: Background timeline -->
+  <div class="card full">
+    <div class="card-title">Background at a Glance</div>
+    <div class="timeline">
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div>
+          <div class="tl-role">Technical Support Analyst (L1)</div>
+          <div class="tl-company">Kyndryl</div>
+          <div class="tl-date">Dec 2023 – Aug 2024</div>
+          <div class="tl-note">Enterprise IT support at scale — Windows, M365, AD, VPN, ServiceNow & Jira. Consistently hit SLA targets handling 120+ tickets/week across hardware and software issues.</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div>
+          <div class="tl-role">Master of Applied Computing (In Progress)</div>
+          <div class="tl-company">Wilfrid Laurier University — Waterloo, ON</div>
+          <div class="tl-date">2024 – Present · GPA 3.9 / 4.0</div>
+          <div class="tl-note">Coursework covering networking, systems, and applied computing — reinforcing the technical foundation behind day-to-day IT support work.</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div>
+          <div class="tl-role">B.E. Computer Science</div>
+          <div class="tl-company">Osmania University — Hyderabad, India</div>
+          <div class="tl-date">2019 – 2023 · GPA 3.0 / 4.0</div>
+          <div class="tl-note">Strong foundations in systems, networking, and programming across 4 years of engineering study.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<!-- ── CLOSING STATEMENT ── -->
+<div class="closer">
+  <div class="closer-quote">"</div>
+  <div class="closer-text">
+    I take IT support seriously — not as a ticket queue to clear, but as the reason <strong>everything else in the building keeps working</strong>.
+    I'd welcome the chance to bring that mindset to Sheraton Centre Toronto.
+    Happy to connect at your convenience.
+  </div>
+</div>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-label">Candidate Brief · Syed Faizan Ahmed · 2025</div>
+  <div class="footer-cta">s.faizanahmed338@gmail.com · +1 (226) 920-4412</div>
+</footer>
+
+</body>
+</html>
